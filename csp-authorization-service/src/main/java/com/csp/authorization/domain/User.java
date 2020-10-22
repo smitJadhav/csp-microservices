@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_details")
 @Getter
 @Setter
 public class User extends BaseUser implements Serializable{

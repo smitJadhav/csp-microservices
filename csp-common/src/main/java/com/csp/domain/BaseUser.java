@@ -19,7 +19,6 @@ import javax.persistence.MappedSuperclass;
 public class BaseUser extends AbstractEntity {
 
     private String userName;
-    private String title;
     private String firstName;
     private String middleName;
     private String lastName;

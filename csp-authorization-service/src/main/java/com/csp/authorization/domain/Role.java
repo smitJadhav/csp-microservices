@@ -1,5 +1,6 @@
 package com.csp.authorization.domain;
 
+import com.csp.domain.base.AbstractEntity;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -18,10 +19,11 @@ import java.io.Serializable;
 @Table(name = "role")
 @Getter
 @Setter
-public class Role implements Serializable {
+public class Role extends AbstractEntity implements Serializable {
 
-    @Id
     @NonNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    private String description;
 }
