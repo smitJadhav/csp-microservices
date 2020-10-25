@@ -13,11 +13,11 @@ public class TestController {
     @GetMapping(value = "/message", produces = MediaType.TEXT_HTML_VALUE)
     public String fetchMessage() {
         return "<html>\n" + "<header><title>Welcome</title></header>\n"
-                + "<body>\n" + "<a href=\"http://localhost:8080/auth-jdbc-service/test/user\">USER</a>\n"
-                + "<a href=\"http://localhost:8080/auth-jdbc-service/test/admin\">ADMIN</a>\n"
+                + "<body>\n" + "<a href=\"http://localhost:9001/auth-jdbc-service/test/user\">USER</a>\n"
+                + "<a href=\"http://localhost:9001/auth-jdbc-service/test/admin\">ADMIN</a>\n"
                 + "<br>"
                 + "<br>"
-                + "<a href=\"http://localhost:8080/auth-jdbc-service/logout\">Logout</a>\n"
+                + "<a href=\"http://localhost:9001/auth-jdbc-service/logout\">Logout</a>\n"
                 + "</body>\n" + "</html>";
     }
 

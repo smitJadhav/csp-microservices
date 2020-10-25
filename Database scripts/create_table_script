@@ -35,3 +35,4 @@ CREATE TABLE role (
   modified_by INT NOT NULL,
   modified_date TIMESTAMP NOT NULL,
   version SMALLINT NOT NULL DEFAULT 0)
+	
