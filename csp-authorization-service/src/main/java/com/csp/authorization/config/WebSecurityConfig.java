@@ -1,11 +1,13 @@
 package com.csp.authorization.config;
 
-import com.csp.authorization.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -20,12 +22,27 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserService userService;
+    private CustomAuthenticationProvider authenticationProvider;
+
+    @Autowired
+    private CustomAuthenticationEntryPoint authenticationEntryPoint;
+
+    @Override
+    public void configure(WebSecurity web){
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/token");
+    }
+
 
     // JPA userService is used to provide authentication for logged in user.
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService);
+        auth.authenticationProvider(authenticationProvider);
+    }
+
+    @Override
+    @Bean
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 
     // Authorization order should be from most restricted to less restricted roles
@@ -34,11 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().headers()
                 .frameOptions().disable().and()
                 .authorizeRequests()
-                .antMatchers("/test/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/test/user/**").hasAuthority("USER")
+                .antMatchers("/v2/api-docs", "/**/health", "/v1/sso/signin").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/test/message")
-                .and().logout();
+                .and().httpBasic()
+                .authenticationEntryPoint(authenticationEntryPoint);
 
     }
 

@@ -9,15 +9,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.csp</groupId>
-	<artifactId>csp-authorization-service</artifactId>
+	<artifactId>csp-admin-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>csp-authorization-service</name>
-	<description>Authorization Service</description>
+	<name>csp-admin-service</name>
+	<description>Admin Service</description>
 	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
 		<lombok.version>1.18.12</lombok.version>
 		<hikari.cp.version>3.4.5</hikari.cp.version>
 		<postgre.sql.version>42.2.16</postgre.sql.version>
@@ -36,14 +35,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.csp</groupId>
@@ -81,19 +72,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+<!--		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.5</version>
+		</dependency>-->
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>

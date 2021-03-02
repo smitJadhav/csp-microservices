@@ -1,18 +1,16 @@
-package com.csp.authorization.controller;
+package com.csp.admin.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// just for testing resource server
-
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @GetMapping("/message")
     public String fetchAdminMessage(){
-        return "Hi there, Welcome to csp";
+        return "Hi there, Welcome to admin functionality";
     }
 
 }
