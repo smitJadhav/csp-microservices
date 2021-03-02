@@ -55,8 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().httpBasic()
                 .authenticationEntryPoint(authenticationEntryPoint);
-                //.and().formLogin().defaultSuccessUrl("/test/message")
-                //.and().logout();
 
     }
 

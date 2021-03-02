@@ -82,6 +82,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
 				.withClient(config.getClientId())
+				//.secret(new BCryptPasswordEncoder().encode(config.getClientSecret()))
 				.secret(config.getClientSecret())
 				.authorizedGrantTypes(config.getAuthorizedGrantTypes())
 				.scopes(config.getScopes())

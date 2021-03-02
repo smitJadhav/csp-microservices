@@ -1,4 +1,4 @@
-package com.csp.authorization.controller;
+package com.csp.config;
 
 import com.csp.model.ErrorDetails;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by Smit.Jadhav on 9/2/2020
+ * Created by Smit.Jadhav on 01/03/2021
  */
 
 @RestController
