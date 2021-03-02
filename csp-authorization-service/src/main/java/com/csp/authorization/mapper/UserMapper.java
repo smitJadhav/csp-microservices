@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface UserMapper {
 
-    @Mapping(source = "role.name", target = "role")
+    @Mapping(source = "user.role.name", target = "role")
     UserDetailsDTO mapUserToUserDetailsDTO(User user);
 }
