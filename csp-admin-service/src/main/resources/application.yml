@@ -10,7 +10,8 @@ springdoc:
 spring:
   main:
     allow-bean-definition-overriding: true
-  application.name: admin-service
+  application:
+    name: admin-service
   autoconfigure.exclude:
     - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   jpa:
@@ -46,3 +47,10 @@ oauth:
     server:
       enable : true
   login.max.attempts: 3
+
+eureka:
+  client:
+    eureka-server-port: 8761
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2

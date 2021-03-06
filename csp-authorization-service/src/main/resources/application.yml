@@ -1,10 +1,9 @@
 server:
   port: 9001
-  servlet:
-    context-path: /authroization-service
 
 spring:
-  application.name: authroization-service
+  application:
+    name: authorization-service
   autoconfigure.exclude:
     - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   jpa:
@@ -21,6 +20,7 @@ spring:
         order_updates: true
         jdbc.fetch_size: 1000
         jdbc.batch_versioned_data: true
+
 database:
   url: jdbc:postgresql://localhost:5432/csp_dev?useSSL=false
   username: postgres
@@ -47,3 +47,10 @@ oauth:
     server:
       enable : false
   login.max.attempts: 3
+
+eureka:
+  client:
+    eureka-server-port: 8761
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
