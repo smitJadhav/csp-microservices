@@ -8,6 +8,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Smit.Jadhav on 14-10-2020.
+ */
+
 public class CustomJWTAccessTokenConverter extends JwtAccessTokenConverter {
 
     @Override

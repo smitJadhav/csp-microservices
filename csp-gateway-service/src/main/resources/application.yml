@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway-service
+
+zuul:
+  prefix: /api
+  routes:
+    authorization-service:
+      sensitiveHeaders:
+      path: /authorization-service/**
+      serviceId: authorization-service
+    admin-service:
+      sensitiveHeaders:
+      path: /admin-service/**
+      serviceId: admin-service
+
+eureka:
+  client:
+    eureka-server-port: 8761
