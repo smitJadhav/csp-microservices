@@ -1,0 +1,18 @@
+server:
+  port: 8999
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/smitJadhav/csp-config
+
+eureka:
+  client:
+    eureka-server-port: 8761
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2

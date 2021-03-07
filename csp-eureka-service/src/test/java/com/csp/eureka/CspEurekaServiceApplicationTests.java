@@ -1,10 +1,10 @@
-package com.csp.gateway;
+package com.csp.eureka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CspAdminServiceApplicationTests {
+class CspEurekaServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -5,6 +5,10 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Smit.Jadhav on 14-10-2020.
+ */
+
 @Component
 @ConfigurationProperties("oauth.ui")
 @Getter
