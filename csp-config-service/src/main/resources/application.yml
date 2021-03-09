@@ -12,7 +12,11 @@ spring:
 
 eureka:
   client:
-    eureka-server-port: 8761
+#    eureka-server-port: 8998
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8998/eureka
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
