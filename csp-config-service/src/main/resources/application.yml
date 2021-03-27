@@ -8,6 +8,7 @@ spring:
     config:
       server:
         git:
+#          uri: file:///D:\Projects\Java\CSP\csp-config
           uri: https://github.com/smitJadhav/csp-config
 
 eureka:

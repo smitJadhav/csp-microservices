@@ -11,9 +11,6 @@ services:
     ports:
       - "8999:8999"
     environment:
-#      - CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/smitJadhav/csp-config
-#      - CLOUD_CONFIG_SERVER_GIT_USER=smitjadhav10@gmail.com
-#      - CLOUD_CONFIG_SERVER_GIT_private_key_file=../../private_key
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
     networks:
       -  microservice-network
@@ -33,7 +30,6 @@ services:
       - eureka-service
       - config-service
     environment:
-#      - DATABASE_URL=jdbc:postgresql://172.21.240.1:5432/csp_dev?useSSL=false
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
       - SPRING_CLOUD_CONFIG_URI=http://config-service:8999
     networks:
@@ -41,24 +37,15 @@ services:
   admin-service:
     build: ./csp-admin-service
     ports:
-      - "9002:9002"
+      - "9002"
     depends_on:
       - eureka-service
       - config-service
     environment:
-#      - DATABASE_URL=jdbc:postgresql://172.21.240.1:5432/csp_dev?useSSL=false
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
       - SPRING_CLOUD_CONFIG_URI=http://config-service:8999
     networks:
       -  microservice-network
-#  start_dependencies:
-#    image: dadarek/wait-for-dependencies
-#    depends_on:
-#      - eureka-service
-#      - config-service
-#    command: eureka-service:8998 config-service:8999
-#    networks:
-#      -  microservice-network
 networks:
   microservice-network:
     driver: bridge
