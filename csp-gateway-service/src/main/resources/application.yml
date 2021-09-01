@@ -16,11 +16,15 @@ zuul:
       sensitiveHeaders:
       path: /admin-service/**
       serviceId: admin-service
+    user-service:
+      sensitiveHeaders:
+      path: /user-service/**
+      serviceId: user-service
 
 eureka:
   client:
 #    eureka-server-port: 8998
-    registerWithEureka: true
+    registerWithEureka: false
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8998/eureka
+      defaultZone: http://eureka-service:8998/eureka
