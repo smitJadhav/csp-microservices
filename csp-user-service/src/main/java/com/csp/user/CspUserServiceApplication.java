@@ -1,4 +1,4 @@
-package com.csp.admin;
+package com.csp.user;
 
 import com.csp.config.Oauth2ResourceServerConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonAutoConfiguration;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,13 +16,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 @ComponentScan(basePackages = "com.csp")
 @EnableJpaAuditing
 @EnableEurekaClient
+@RibbonClient(name = "user-service-ribbon", configuration = RibbonAutoConfiguration.class)
 @SpringBootApplication
-@RibbonClient(name = "admin-service-ribbon", configuration = RibbonAutoConfiguration.class)
-@EnableFeignClients(basePackages="com.csp.admin")
-public class CspAdminServiceApplication extends Oauth2ResourceServerConfig {
+public class CspUserServiceApplication extends Oauth2ResourceServerConfig {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CspAdminServiceApplication.class, args);
+		SpringApplication.run(CspUserServiceApplication.class, args);
 	}
 
 	@Autowired
