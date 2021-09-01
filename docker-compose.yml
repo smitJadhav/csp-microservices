@@ -12,6 +12,7 @@ services:
       - "8999:8999"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
+#      - DATABASE_URL=jdbc:jdbc:postgresql://192.168.1.24:5432/csp_dev?useSSL=false
     networks:
       -  microservice-network
   gateway-service:
@@ -20,6 +21,7 @@ services:
       - "9000:9000"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
+      - DATABASE_URL=jdbc:jdbc:postgresql://192.168.1.24:5432/csp_dev?useSSL=false
     networks:
       -  microservice-network
   authorization-service:
@@ -32,6 +34,7 @@ services:
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
       - SPRING_CLOUD_CONFIG_URI=http://config-service:8999
+      - DATABASE_URL=jdbc:jdbc:postgresql://192.168.1.24:5432/csp_dev?useSSL=false
     networks:
       -  microservice-network
   admin-service:
@@ -44,6 +47,20 @@ services:
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
       - SPRING_CLOUD_CONFIG_URI=http://config-service:8999
+      - DATABASE_URL=jdbc:postgresql://192.168.1.24:5432/csp_dev?useSSL=false
+    networks:
+      -  microservice-network
+  user-service:
+    build: ./csp-user-service
+    ports:
+      - "9003"
+    depends_on:
+      - eureka-service
+      - config-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8998/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-service:8999
+      - DATABASE_URL=jdbc:jdbc:postgresql://192.168.1.24:5432/csp_dev?useSSL=false
     networks:
       -  microservice-network
 networks:
