@@ -27,7 +27,7 @@ public class IndexController implements ErrorController {
     public ErrorDetails findError(HttpServletResponse response) {
 
         HttpStatus status = HttpStatus.valueOf(response.getStatus());
-        return new ErrorDetails(response.getStatus(), status, status.getReasonPhrase());
+        return new ErrorDetails(response.getStatus(), status.getReasonPhrase(), status.getReasonPhrase());
     }
 
 }

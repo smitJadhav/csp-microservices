@@ -28,3 +28,9 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://eureka-service:8998/eureka
+
+ribbon:
+  ReadTimeout: 60000
+  connection-timeout: 3000
+  eureka:
+    enabled: true

@@ -19,5 +19,6 @@ eureka:
     serviceUrl:
       defaultZone: http://eureka-service:8998/eureka
   instance:
+    preferIpAddress: true
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2

@@ -1,14 +1,15 @@
 package com.csp.admin;
 
+import com.csp.admin.config.FeignClientInterceptor;
 import com.csp.config.Oauth2ResourceServerConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.ribbon.RibbonAutoConfiguration;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,9 +18,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 @ComponentScan(basePackages = "com.csp")
 @EnableJpaAuditing
 @EnableEurekaClient
-@SpringBootApplication
-@RibbonClient(name = "admin-service-ribbon", configuration = RibbonAutoConfiguration.class)
 @EnableFeignClients(basePackages="com.csp.admin")
+@SpringBootApplication
 public class CspAdminServiceApplication extends Oauth2ResourceServerConfig {
 
 	public static void main(String[] args) {
@@ -35,5 +35,10 @@ public class CspAdminServiceApplication extends Oauth2ResourceServerConfig {
 				.authorizeRequests()
 				.antMatchers("/api-docs*", "/**/health").permitAll();
 	}
+
+    @Bean
+    public RequestInterceptor userFeignClientInterceptor() {
+        return new FeignClientInterceptor();
+    }
 
 }
