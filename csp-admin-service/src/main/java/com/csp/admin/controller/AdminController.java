@@ -1,10 +1,10 @@
 package com.csp.admin.controller;
 
+import com.csp.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.csp.admin.service.UserServiceFeignClient;
 
 
 /**
@@ -15,17 +15,17 @@ import com.csp.admin.service.UserServiceFeignClient;
 @RequestMapping("/admin")
 public class AdminController {
 
-//    @LoadBalanced
-//    private RestTemplate restTemplate;
-
 	@Autowired
-	private UserServiceFeignClient userServiceFeignClient;
+	private AdminService adminService;
 
 	@GetMapping("/message")
 	public String fetchAdminMessage(){
-		String response = userServiceFeignClient.findMessage();
-		//String response  = restTemplate.getForObject("http://user-service/user/message", String.class);
-		return "Hi there, Welcome to admin functionality. " + response;
+        return adminService.fetchAdminMessage();
 	}
+
+    @GetMapping("/test")
+    public String fetchTestMessage(){
+        return adminService.fetchTestMessage();
+    }
 
 }

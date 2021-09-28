@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
  * @author Smit.Jadhav on 3-10-2020.
  */
 
-public abstract class BaseRepositoryCustomImpl implements BaseRepository {
+public abstract class BaseRepositoryCustomImpl {
 
     protected EntityManager entityManager;
 

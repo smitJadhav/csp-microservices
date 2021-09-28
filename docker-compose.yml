@@ -40,7 +40,7 @@ services:
   admin-service:
     build: ./csp-admin-service
     ports:
-      - "9002"
+      - "9002:9002"
     depends_on:
       - eureka-service
       - config-service
@@ -53,7 +53,7 @@ services:
   user-service:
     build: ./csp-user-service
     ports:
-      - "9003"
+      - "9003:9003"
     depends_on:
       - eureka-service
       - config-service
