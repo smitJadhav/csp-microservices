@@ -9,5 +9,7 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-    service-url:
+    serviceUrl:
       defaultZone: http://eureka-service:8998/eureka
+    healthcheck:
+      enabled: true
