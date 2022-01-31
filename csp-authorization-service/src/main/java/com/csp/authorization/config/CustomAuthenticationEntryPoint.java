@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author Smit.Jadhav on 3-10-2020.
@@ -28,7 +29,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        ErrorDetails errorDetail = new ErrorDetails(400 , HttpStatus.BAD_REQUEST, "Invalid Client Details " + LocalDateTime.now());
+        ErrorDetails errorDetail = new ErrorDetails(400 , HttpStatus.BAD_REQUEST.toString(), "Invalid Client Details " , new Date(), "Invalid Client Details");
 
         httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);

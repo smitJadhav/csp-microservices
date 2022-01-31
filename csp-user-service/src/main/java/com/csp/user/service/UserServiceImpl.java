@@ -6,12 +6,17 @@ import com.csp.user.mapper.UserMapper;
 import com.csp.user.model.UserDTO;
 import com.csp.user.repository.RoleRepository;
 import com.csp.user.repository.UserRepository;
+import com.csp.util.exception.DataNotFound;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -38,8 +43,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDTO findUser(Long id) {
-        User user = userRepository.findById(id).get();
-        return userMapper.mapUserToUSerDTO(user);
+    public UserDTO findUser(Long id) throws Exception {
+        UserDTO userDTO = userRepository.findUserById(id);
+        if (null == userDTO) {
+            throw new DataNotFound(User.class, "not found", "id");
+        }
+        return userDTO;
     }
 }

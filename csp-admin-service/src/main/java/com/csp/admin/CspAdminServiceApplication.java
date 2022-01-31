@@ -1,9 +1,11 @@
 package com.csp.admin;
 
+import com.csp.admin.config.CustomFeignErrorDecoder;
 import com.csp.admin.config.FeignClientInterceptor;
 import com.csp.config.Oauth2ResourceServerConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.RequestInterceptor;
+import feign.codec.ErrorDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -40,5 +42,4 @@ public class CspAdminServiceApplication extends Oauth2ResourceServerConfig {
     public RequestInterceptor userFeignClientInterceptor() {
         return new FeignClientInterceptor();
     }
-
 }

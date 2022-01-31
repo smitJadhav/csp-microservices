@@ -2,6 +2,6 @@ package com.csp.admin.service;
 
 public interface AdminService {
 
-    String fetchAdminMessage();
+    String fetchAdminMessage() throws Exception;
     String fetchTestMessage();
 }

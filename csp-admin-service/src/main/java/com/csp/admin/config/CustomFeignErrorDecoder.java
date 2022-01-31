@@ -5,18 +5,18 @@ import feign.codec.ErrorDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Smit.Jadhav on 01-08-2021.
  */
 
-@Component
-public class CustomClientExceptionHandler implements ErrorDecoder {
+public class CustomFeignErrorDecoder implements ErrorDecoder {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CustomClientExceptionHandler.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(CustomFeignErrorDecoder.class);
 
         //TODO: Add custom exception handling logic later
+
+    private final ErrorDecoder.Default defaultDecoder = new Default();
 
     @Override
     public Exception decode(String methodKey, Response response) {
@@ -24,7 +24,7 @@ public class CustomClientExceptionHandler implements ErrorDecoder {
         HttpStatus responseStatus = HttpStatus.valueOf(response.status());
 
         LOGGER.info("feign error decoder called");
-
+ 
         if (responseStatus.is5xxServerError()) {
             LOGGER.error("Status code = {}, methodKey = {}, responseBody = ", response.status(), methodKey, responseBody.toString());
             return new Exception(responseBody.toString());

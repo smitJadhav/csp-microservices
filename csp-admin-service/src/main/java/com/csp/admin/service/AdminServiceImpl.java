@@ -1,25 +1,28 @@
 package com.csp.admin.service;
 
+import feign.FeignException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    //    @LoadBalanced
-    //    private RestTemplate restTemplate;
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     @Autowired
     private UserServiceFeignClient userServiceFeignClient;
 
-    //@HystrixCommand(fallbackMethod = "userServiceFallBack")
     @Override
-    public String fetchAdminMessage(){
-        String response = userServiceFeignClient.findMessage();
-        //String response  = restTemplate.getForObject("http://user-service/user/message", String.class);
-        return "Hi there, Welcome to admin functionality. " + response;
+    public String fetchAdminMessage() throws Exception{
+        try {
+            String response = userServiceFeignClient.findMessage();
+            return "Hi there, Welcome to admin functionality. " + response;
+        } catch (FeignException ex){
+            LOGGER.error("localized : " + ex.getMessage());
+            throw new Exception(ex.getMessage());
+        }
     }
 
     @Override
@@ -27,7 +30,4 @@ public class AdminServiceImpl implements AdminService {
         return "Hi there, This is a test message.";
     }
 
-    public String userServiceFallBack() {
-        return "No Response From User Service at this moment. Service will be back shortly "+ new Date();
-    }
 }
