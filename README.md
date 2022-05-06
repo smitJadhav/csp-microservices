@@ -2,7 +2,7 @@
 microservices implementation
 
 This is a customer service provider apllication.
-This application uses technologies like Spring boot, postgres, hibernate, Oauth2, Eureka, Zuul, Ribbon, Common configuration, docker.
+This application uses technologies like Spring boot, postgres, hibernate, Oauth2, Eureka, Zuul, Ribbon, Common configuration, docker, kubernetes.
 
 Application has different services as follows.
 1.Eureka service - This is a eureka server application used for service descovery.
